@@ -96,6 +96,21 @@ to quit.
 - Llama / Ollama Integration
 - Web Interface using Streamlit
 
+## Chatbot Demo
+
+### Example 1 - AI Question
+
+![Chatbot Demo 1](chatbot_demo_1.png)
+
+The chatbot correctly identifies **ai.txt** as the most relevant document and returns the answer with a similarity score.
+
+---
+
+### Example 2 - Machine Learning Question
+
+![Chatbot Demo 2](chatbot_demo_2.png)
+
+The chatbot correctly retrieves information from **machine_learning.txt** and displays the relevant content.
 ---
 
 ## Author
