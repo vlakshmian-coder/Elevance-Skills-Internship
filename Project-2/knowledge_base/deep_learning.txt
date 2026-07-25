@@ -1,0 +1,7 @@
+Deep learning is a subset of machine learning.
+
+It uses artificial neural networks with multiple layers to learn complex patterns from data.
+
+Deep learning is widely used in computer vision, natural language processing, speech recognition, medical image analysis, and self-driving cars.
+
+Popular deep learning frameworks include TensorFlow and PyTorch.

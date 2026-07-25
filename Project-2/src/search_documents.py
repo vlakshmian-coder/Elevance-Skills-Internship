@@ -28,8 +28,14 @@ vectorizer = TfidfVectorizer()
 
 document_vectors = vectorizer.fit_transform(documents)
 
-# Function to search the knowledge base
-def search_knowledge_base(query):
+# User query
+while True:
+
+    query = input("\nAsk a question (or type exit): ")
+
+    if query.lower() == "exit":
+        print("Goodbye!")
+        break
 
     query_vector = vectorizer.transform([query])
 
@@ -37,6 +43,13 @@ def search_knowledge_base(query):
 
     best_match = similarity.argmax()
 
-    return documents[best_match]
+    print("\nMost Relevant Document:")
+    print(filenames[best_match])
+
+    print("\nSimilarity Score:")
+    print(f"{similarity[0][best_match]:.2f}")
+
+    print("\nContent:\n")
+    print(documents[best_match])
 
 
