@@ -24,7 +24,10 @@ for filename in os.listdir(folder_path):
             filenames.append(filename)
 
 # Create TF-IDF vectors
-vectorizer = TfidfVectorizer()
+vectorizer = TfidfVectorizer(
+    stop_words="english",
+    lowercase=True
+)
 
 document_vectors = vectorizer.fit_transform(documents)
 
@@ -37,6 +40,24 @@ def search_knowledge_base(query):
 
     best_match = similarity.argmax()
 
-    return documents[best_match]
+    best_score = similarity[0][best_match]
+
+    print(f"Similarity Score: {best_score:.4f}")
+
+    # Minimum similarity required
+    if best_score < 0.20:
+        return (
+        "No matching document",
+        "Sorry, I couldn't find an answer in my knowledge base.\n"
+        "Please try asking about AI, Python, Machine Learning, "
+        "Deep Learning, or another topic available in the knowledge base.",
+        best_score
+    )
+
+    return (
+    filenames[best_match],
+    documents[best_match],
+    best_score
+)
 
 

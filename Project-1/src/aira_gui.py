@@ -71,10 +71,22 @@ def send_message():
 
     chat_box.insert(tk.END, f"\nYou: {question}\n")
 
-    chat_box.insert(
-        tk.END,
-        "AIRA: I received your question. Knowledge search will be connected next.\n\n"
-    )
+    try:
+        source, answer, score = search_knowledge_base(question)
+
+        chat_box.insert(
+    tk.END,
+    f"AIRA:\n"
+    f"📄 Source: {source}\n"
+    f"🎯 Confidence: {score:.2f}\n\n"
+    f"{answer}\n\n"
+)
+
+    except Exception as e:
+        chat_box.insert(
+            tk.END,
+            f"AIRA:\nError: {e}\n\n"
+        )
 
     chat_box.config(state="disabled")
 
@@ -100,6 +112,7 @@ question_entry = tk.Entry(
 )
 
 question_entry.pack(pady=5)
+
 # Send button
 send_button = tk.Button(
     window,
