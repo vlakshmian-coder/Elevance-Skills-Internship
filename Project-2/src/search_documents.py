@@ -11,7 +11,7 @@ import os
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-folder_path = "Project-1/knowledge_base"
+folder_path = "Project-2/knowledge_base"
 
 documents = []
 filenames = []
@@ -24,18 +24,15 @@ for filename in os.listdir(folder_path):
             filenames.append(filename)
 
 # Create TF-IDF vectors
-vectorizer = TfidfVectorizer()
+vectorizer = TfidfVectorizer(
+    stop_words="english",
+    lowercase=True
+)
 
 document_vectors = vectorizer.fit_transform(documents)
 
-# User query
-while True:
-
-    query = input("\nAsk a question (or type exit): ")
-
-    if query.lower() == "exit":
-        print("Goodbye!")
-        break
+# Function to search the knowledge base
+def search_knowledge_base(query):
 
     query_vector = vectorizer.transform([query])
 
@@ -43,13 +40,24 @@ while True:
 
     best_match = similarity.argmax()
 
-    print("\nMost Relevant Document:")
-    print(filenames[best_match])
+    best_score = similarity[0][best_match]
 
-    print("\nSimilarity Score:")
-    print(f"{similarity[0][best_match]:.2f}")
+    print(f"Similarity Score: {best_score:.4f}")
 
-    print("\nContent:\n")
-    print(documents[best_match])
+    # Minimum similarity required
+    if best_score < 0.20:
+        return (
+        "No matching document",
+        "Sorry, I couldn't find an answer in my knowledge base.\n"
+        "Please try asking about AI, Python, Machine Learning, "
+        "Deep Learning, or another topic available in the knowledge base.",
+        best_score
+    )
+
+    return (
+    filenames[best_match],
+    documents[best_match],
+    best_score
+)
 
 

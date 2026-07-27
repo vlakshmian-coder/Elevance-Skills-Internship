@@ -9,8 +9,8 @@
 import os
 import shutil
 
-source_folder = "Project-1/new_documents"
-destination_folder = "Project-1/knowledge_base"
+source_folder = "Project-2/new_documents"
+destination_folder = "Project-2/knowledge_base"
 
 for filename in os.listdir(source_folder):
 
