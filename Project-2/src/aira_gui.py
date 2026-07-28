@@ -24,6 +24,10 @@ title = tk.Label(
 title.pack(pady=20)
 from PIL import Image, ImageTk
 from search_documents import search_knowledge_base
+from conversation_memory import ConversationMemory
+
+memory = ConversationMemory()
+
 # Load AIRA avatar
 
 import os
@@ -75,12 +79,15 @@ def send_message():
         source, answer, score = search_knowledge_base(question)
 
         chat_box.insert(
-    tk.END,
-    f"AIRA:\n"
-    f"📄 Source: {source}\n"
-    f"🎯 Confidence: {score:.2f}\n\n"
-    f"{answer}\n\n"
-)
+            tk.END,
+            f"AIRA:\n"
+            f"📄 Source: {source}\n"
+            f"🎯 Confidence: {score:.2f}\n\n"
+            f"{answer}\n\n"
+        )
+
+        # Save conversation in memory
+        memory.add_message(question, answer)
 
     except Exception as e:
         chat_box.insert(
