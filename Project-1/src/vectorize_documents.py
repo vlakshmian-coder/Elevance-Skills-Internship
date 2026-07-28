@@ -10,7 +10,7 @@ import os
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 # Folder containing documents
-folder_path = "Project-1/knowledge_base"
+folder_path = "Project-2/knowledge_base"
 
 documents = []
 filenames = []
