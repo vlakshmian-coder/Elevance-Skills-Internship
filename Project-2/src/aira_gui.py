@@ -68,6 +68,7 @@ def send_message():
 
     question = question_entry.get()
 
+
     if question.strip() == "":
         return
 
@@ -86,10 +87,10 @@ def send_message():
             f"{answer}\n\n"
         )
 
-        # Save conversation in memory
+        # Save conversation to memory for future context-aware responses
         memory.add_message(question, answer)
         
-        print(memory.get_history())
+        
 
     except Exception as e:
         chat_box.insert(
