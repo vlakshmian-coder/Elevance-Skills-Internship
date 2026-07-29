@@ -88,6 +88,8 @@ def send_message():
 
         # Save conversation in memory
         memory.add_message(question, answer)
+        
+        print(memory.get_history())
 
     except Exception as e:
         chat_box.insert(

@@ -1,10 +1,8 @@
 # ==========================================================
 # Project: Multi-Modal AI Assistant
 # File: conversation_memory.py
-# Author: Vijayalakshmi Narayanan
 # Description:
-# Stores conversation history so AIRA can remember
-# previous questions and answers.
+# Stores conversation history.
 # ==========================================================
 
 class ConversationMemory:
@@ -12,18 +10,21 @@ class ConversationMemory:
     def __init__(self):
         self.history = []
 
-    # Save a conversation
-    def add_message(self, user_message, assistant_reply):
-
+    def add_message(self, user, assistant):
         self.history.append({
-            "user": user_message,
-            "assistant": assistant_reply
+            "user": user,
+            "assistant": assistant
         })
 
-    # Show all previous conversations
     def get_history(self):
-        return self.history
 
-    # Clear memory
-    def clear_memory(self):
-        self.history = []
+        text = ""
+
+        for item in self.history:
+
+            text += (
+                f"User: {item['user']}\n"
+                f"AIRA: {item['assistant']}\n\n"
+            )
+
+        return text
