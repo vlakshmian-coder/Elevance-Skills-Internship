@@ -1,4 +1,5 @@
 from tkinter import filedialog
+from unittest import result
 from vision_assistant import analyse_image
 
 import tkinter as tk
@@ -8,6 +9,9 @@ from conversation_memory import ConversationMemory
 import os
 
 memory = ConversationMemory()
+
+# Stores information about the last uploaded image
+last_uploaded_image = None
 
 window = tk.Tk()
 window.title("AIRA - AI Knowledge Assistant")
@@ -46,6 +50,38 @@ def send_message():
         question_entry.delete(0,tk.END)
         return
     chat_box.insert(tk.END,f"\nYou: {question}\n")
+    # -------------------------------
+    # Answer questions about uploaded image
+    # -------------------------------
+
+    if last_uploaded_image is not None:
+
+        image_question = question.lower()
+
+        if (
+            "image" in image_question
+            or "photo" in image_question
+            or "picture" in image_question
+            or "size" in image_question
+            or "width" in image_question
+            or "height" in image_question
+            or "format" in image_question
+            or "mode" in image_question
+        ):
+
+            chat_box.insert(
+                tk.END,
+                "AIRA:\n"
+                "Here is the information about the last uploaded image:\n\n"
+                + last_uploaded_image
+                + "\n\n"
+            )
+
+            chat_box.config(state="disabled")
+            chat_box.see(tk.END)
+            question_entry.delete(0, tk.END)
+            return
+
     try:
         source,answer,score=search_knowledge_base(question)
         chat_box.insert(tk.END,f"AIRA:\n📄 Source: {source}\n🎯 Confidence: {score:.2f}\n\n{answer}\n\n")
@@ -77,6 +113,9 @@ def upload_image():
     try:
 
         result = analyse_image(image_name)
+
+        global last_uploaded_image
+        last_uploaded_image = result
 
         chat_box.config(state="normal")
 
