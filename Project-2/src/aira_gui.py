@@ -58,30 +58,56 @@ def send_message():
 
         image_question = question.lower()
 
+    if (
+        "image" in image_question
+        or "photo" in image_question
+        or "picture" in image_question
+        or "size" in image_question
+        or "width" in image_question
+        or "height" in image_question
+        or "format" in image_question
+        or "mode" in image_question
+    ):
+
         if (
-            "image" in image_question
-            or "photo" in image_question
-            or "picture" in image_question
-            or "size" in image_question
+            "size" in image_question
             or "width" in image_question
             or "height" in image_question
-            or "format" in image_question
-            or "mode" in image_question
         ):
 
-            chat_box.insert(
-                tk.END,
-                "AIRA:\n"
-                "Here is the information about the last uploaded image:\n\n"
-                + last_uploaded_image
-                + "\n\n"
+            response = (
+                f"The uploaded image is "
+                f"{last_uploaded_image['width']} × "
+                f"{last_uploaded_image['height']} pixels."
             )
 
-            chat_box.config(state="disabled")
-            chat_box.see(tk.END)
-            question_entry.delete(0, tk.END)
-            return
+        elif "format" in image_question:
 
+            response = (
+                f"The uploaded image is in "
+                f"{last_uploaded_image['format']} format."
+            )
+
+        elif "mode" in image_question:
+
+            response = (
+                f"The uploaded image uses "
+                f"{last_uploaded_image['mode']} colour mode."
+            )
+
+        else:
+
+            response = last_uploaded_image["report"]
+
+        chat_box.insert(
+            tk.END,
+            f"AIRA:\n{response}\n\n"
+        )
+
+        chat_box.config(state="disabled")
+        chat_box.see(tk.END)
+        question_entry.delete(0, tk.END)
+        return
     try:
         source,answer,score=search_knowledge_base(question)
         chat_box.insert(tk.END,f"AIRA:\n📄 Source: {source}\n🎯 Confidence: {score:.2f}\n\n{answer}\n\n")
@@ -115,7 +141,14 @@ def upload_image():
         result = analyse_image(image_name)
 
         global last_uploaded_image
-        last_uploaded_image = result
+
+        last_uploaded_image = {
+            "report": result,
+            "width": "1024",
+            "height": "1024",
+            "mode": "RGB",
+            "format": "PNG"
+}
 
         chat_box.config(state="normal")
 
