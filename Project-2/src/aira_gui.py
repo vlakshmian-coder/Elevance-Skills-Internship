@@ -1,3 +1,6 @@
+from tkinter import filedialog
+from vision_assistant import analyse_image
+
 import tkinter as tk
 from PIL import Image, ImageTk
 from search_documents import search_knowledge_base
@@ -53,6 +56,61 @@ def send_message():
     chat_box.see(tk.END)
     question_entry.delete(0,tk.END)
 
+def upload_image():
+
+    file_path = filedialog.askopenfilename(
+
+        title="Select an Image",
+
+        filetypes=[
+            ("Image Files", "*.png *.jpg *.jpeg *.bmp")
+        ]
+    )
+
+    if not file_path:
+        return
+
+    import os
+
+    image_name = os.path.basename(file_path)
+
+    try:
+
+        result = analyse_image(image_name)
+
+        chat_box.config(state="normal")
+
+        chat_box.insert(
+
+            tk.END,
+
+            "\n🖼 Vision Assistant\n\n"
+
+            + result
+
+            + "\n\n"
+
+        )
+
+        chat_box.config(state="disabled")
+
+        chat_box.see(tk.END)
+
+    except Exception as e:
+
+        chat_box.config(state="normal")
+
+        chat_box.insert(
+
+            tk.END,
+
+            f"\nVision Assistant Error:\n{e}\n\n"
+
+        )
+
+        chat_box.config(state="disabled")
+
+# Question label
 question_label=tk.Label(window,text="Ask AIRA:",font=("Arial",11,"bold"),bg="#EAF4FF")
 question_label.pack()
 question_entry=tk.Entry(window,width=55,font=("Arial",11))
@@ -61,4 +119,31 @@ send_button=tk.Button(window,text="📨 Send",font=("Arial",11,"bold"),
 bg="#0B5394",fg="white",activebackground="#1565C0",activeforeground="white",
 width=15,height=2,command=send_message)
 send_button.pack(pady=10)
+
+upload_button = tk.Button(
+
+    window,
+
+    text="🖼 Upload Image",
+
+    font=("Arial", 11, "bold"),
+
+    bg="#2E8B57",
+
+    fg="white",
+
+    activebackground="#3CB371",
+
+    activeforeground="white",
+
+    width=15,
+
+    height=2,
+
+    command=upload_image
+
+)
+
+upload_button.pack(pady=5)
+
 window.mainloop()
