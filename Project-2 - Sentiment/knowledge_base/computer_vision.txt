@@ -1,0 +1,7 @@
+Computer Vision is a branch of Artificial Intelligence that enables computers to understand and analyze images and videos.
+
+Computer Vision is used for image classification, object detection, face recognition, OCR, medical image analysis, autonomous vehicles, and surveillance.
+
+Common Computer Vision techniques include image segmentation, feature extraction, edge detection, and Convolutional Neural Networks (CNNs).
+
+Computer Vision processes visual information from cameras and images.

@@ -162,6 +162,15 @@ except (FileNotFoundError, OSError):
 
 chat_box = tk.Text(window, width=88, height=18, font=("Arial", 11), wrap=tk.WORD)
 chat_box.pack(padx=20, pady=10)
+
+# Welcome message
+chat_box.insert(
+    tk.END,
+    "🤖 AIRA: Hello! I am AIRA, your AI Knowledge Assistant.\n\n"
+    "I can answer your questions, analyze images, and help you learn.\n"
+    "Please type your question below and press Send.\n\n"
+)
+
 chat_box.config(state="disabled")
 
 question_label = tk.Label(
