@@ -1,0 +1,3 @@
+Machine learning allows computers to learn from data.
+Supervised learning uses labelled data.
+Unsupervised learning finds hidden patterns.
