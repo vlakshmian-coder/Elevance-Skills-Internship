@@ -1,0 +1,3 @@
+Artificial Intelligence enables machines to perform tasks intelligently.
+AI is used in chatbots and recommendation systems.
+Machine learning is a branch of AI.
