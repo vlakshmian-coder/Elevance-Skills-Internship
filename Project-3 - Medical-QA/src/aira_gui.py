@@ -136,13 +136,13 @@ def upload_image():
 
 
 window = tk.Tk()
-window.title("AIRA - AI Knowledge Assistant")
+window.title("AIRA - Medical AI Assistant")
 window.geometry("900x700")
 window.configure(bg="#EAF4FF")
 
 title = tk.Label(
     window,
-    text="🤖 AIRA - AI Knowledge Assistant",
+    text="🩺 AIRA - Medical AI Assistant",
     font=("Arial", 20, "bold"),
     bg="#EAF4FF",
     fg="#0B5394",
@@ -163,19 +163,20 @@ except (FileNotFoundError, OSError):
 chat_box = tk.Text(window, width=88, height=18, font=("Arial", 11), wrap=tk.WORD)
 chat_box.pack(padx=20, pady=10)
 
-# Welcome message
 chat_box.insert(
     tk.END,
-    "🤖 AIRA: Hello! I am AIRA, your AI Knowledge Assistant.\n\n"
-    "I can answer your questions, analyze images, and help you learn.\n"
-    "Please type your question below and press Send.\n\n"
+    "🩺 AIRA: Hello! I am AIRA, your Medical AI Assistant.\n\n"
+    "📚 My knowledge base is powered by the MedQuAD medical dataset.\n"
+    "I can answer questions about diseases, symptoms, diagnosis, treatments, medications, and general health topics.\n\n"
+    "🖼 You can also upload a medical image for basic image analysis.\n\n"
+    "Please type your medical question below and press Send.\n\n"
 )
 
 chat_box.config(state="disabled")
 
 question_label = tk.Label(
     window,
-    text="Ask AIRA:",
+    text="Ask AIRA a Medical Question:",
     font=("Arial", 11, "bold"),
     bg="#EAF4FF",
 )
