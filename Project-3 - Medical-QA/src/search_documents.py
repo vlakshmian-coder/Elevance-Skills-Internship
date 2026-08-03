@@ -7,51 +7,45 @@
 # similarity to find the most relevant document.
 # ==========================================================
 
-import os
+
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-folder_path = os.path.join(current_dir, "..", "knowledge_base")
+from load_medquad import load_medquad
 
-print("Knowledge Base Folder:", folder_path)
-print("Files found:", os.listdir(folder_path))
+# Load MedQuAD dataset
+medical_data = load_medquad()
 
-documents = []
-filenames = []
+questions = []
+answers = []
+sources = []
 
-# Read documents
-for filename in os.listdir(folder_path):
-    if filename.endswith(".txt"):
-        with open(os.path.join(folder_path, filename), "r", encoding="utf-8") as file:
-            documents.append(file.read())
-            filenames.append(filename)
+for item in medical_data:
+    questions.append(item["question"])
+    answers.append(item["answer"])
+    sources.append(item["source"])
 
-# Create TF-IDF vectors
+print(f"\nLoaded {len(questions)} medical questions.\n")
+
 vectorizer = TfidfVectorizer(
     stop_words="english",
     lowercase=True
 )
 
-document_vectors = vectorizer.fit_transform(documents)
+question_vectors = vectorizer.fit_transform(questions)
 
 # Function to search the knowledge base
 def search_knowledge_base(query):
 
     query_vector = vectorizer.transform([query])
 
-    similarity = cosine_similarity(query_vector, document_vectors)
-
-    # Print similarity score for every document
-    print("\nSimilarity Scores:")
-    for i, filename in enumerate(filenames):
-        print(f"{filename}: {similarity[0][i]:.4f}")
+    similarity = cosine_similarity(query_vector, question_vectors)
 
     best_match = similarity.argmax()
 
     best_score = similarity[0][best_match]
 
-    print(f"\nBest Match: {filenames[best_match]}")
+    print(f"\nBest Match: {questions[best_match]}")
     print(f"Best Score: {best_score:.4f}")
 
     # Minimum similarity required
@@ -65,9 +59,9 @@ def search_knowledge_base(query):
         )
 
     return (
-        filenames[best_match],
-        documents[best_match],
+        sources[best_match],
+        answers[best_match],
         best_score
-    )
+)
 
 
