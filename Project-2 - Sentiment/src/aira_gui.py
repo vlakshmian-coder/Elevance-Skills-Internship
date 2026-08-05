@@ -7,6 +7,13 @@ from tkinter import filedialog
 from PIL import Image, ImageTk
 
 from conversation_memory import ConversationMemory
+
+from language_support import (
+    detect_language,
+    translate_to_english,
+    translate_from_english,
+)
+
 from search_documents import search_knowledge_base
 from sentiment_analyzer import detect_sentiment
 from vision_assistant import analyse_image
@@ -87,7 +94,14 @@ def send_message(event=None):
         return
 
     try:
-        source, answer, score = search_knowledge_base(question)
+        user_language = detect_language(question)
+
+        english_question = translate_to_english(question)
+
+        source, answer, score = search_knowledge_base(english_question)
+
+        answer = translate_from_english(answer, user_language)
+
         reply = sentiment_reply(question)
         append_to_chat(
             "AIRA:\n"
