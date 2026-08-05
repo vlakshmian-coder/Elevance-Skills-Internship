@@ -1,120 +1,31 @@
-# Dynamic Knowledge Base Chatbot
+# Dynamic AIRA - Multilingual AI Knowledge Assistant
 
-## Project Overview
+## Overview
 
-This project implements a chatbot knowledge base using Natural Language Processing (NLP).
+Dynamic AIRA is a conversational AI knowledge assistant designed to make information easier to access across languages. It helps users ask questions naturally, explore knowledge, and receive helpful responses through a simple chat interface.
 
-The chatbot automatically reads text documents from a knowledge base, converts them into TF-IDF vectors, and retrieves the most relevant document based on the user's question.
+## Features shown in the demo
 
-It also supports automatic knowledge base expansion by adding new documents without changing the source code.
+- Knowledge-based question answering
+- Multilingual questions and answers
+- Friendly, human-centered conversational responses
+- Image upload and image-related information
 
----
+## Why Dynamic AIRA
 
-## Features
+Language should not be a barrier to learning. Dynamic AIRA makes knowledge interaction approachable by supporting communication in multiple languages, so users can ask, understand, and engage in the language that feels natural to them.
 
-- Text preprocessing
-- Bag of Words
-- TF-IDF Vectorization
-- Automatic document loading
-- Document similarity search
-- Automatic knowledge base updates
-- Interactive chatbot interface
+## How it works
 
----
+1. Enter a question in the **Ask AIRA** field.
+2. Select **Send**.
+3. Review Dynamic AIRA's response in the conversation area.
+4. Use **Upload Image** to add an image for image-based interaction.
 
-## Technologies Used
+## Demo video
 
-- Python
-- Scikit-learn
-- TF-IDF
-- Cosine Similarity
-- NLP
+The accompanying walkthrough demonstrates knowledge questions, English and multilingual text prompts, conversational interaction, and an image-upload example.
 
----
+## Project status
 
-## Project Structure
-
-```
-Project-1/
-│
-├── knowledge_base/
-├── new_documents/
-├── src/
-│   ├── preprocess.py
-│   ├── bag_of_words.py
-│   ├── tfidf.py
-│   ├── read_documents.py
-│   ├── vectorize_documents.py
-│   ├── search_documents.py
-│   └── update_knowledge_base.py
-│
-├── README.md
-└── requirements.txt
-```
-
----
-
-## How to Run
-
-1. Install the required libraries.
-
-```
-pip install -r requirements.txt
-```
-
-2. Run the chatbot.
-
-```
-python src/search_documents.py
-```
-
-3. Ask questions.
-
-Example:
-
-```
-What is AI?
-What is Python?
-What is Machine Learning?
-```
-
-Type
-
-```
-exit
-```
-
-to quit.
-
----
-
-## Future Improvements
-
-- Sentence Transformers
-- FAISS Vector Database
-- LangChain Integration
-- Llama / Ollama Integration
-- Web Interface using Streamlit
-
-## Chatbot Demo
-
-### Example 1 - AI Question
-
-![Chatbot Demo 1](chatbot_demo_1.png)
-
-The chatbot correctly identifies **ai.txt** as the most relevant document and returns the answer with a similarity score.
-
----
-
-### Example 2 - Machine Learning Question
-
-![Chatbot Demo 2](chatbot_demo_2.png)
-
-The chatbot correctly retrieves information from **machine_learning.txt** and displays the relevant content.
----
-
-## Author
-
-Vijayalakshmi Narayanan
-
-
+This is a working demo of the Dynamic AIRA user experience. Features and interface details may evolve as the project develops.
