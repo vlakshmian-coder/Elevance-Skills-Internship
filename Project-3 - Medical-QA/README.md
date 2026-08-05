@@ -1,120 +1,24 @@
-# Dynamic Knowledge Base Chatbot
+# Medical AIRA - AI Health Information Assistant
 
-## Project Overview
+## Overview
 
-This project implements a chatbot knowledge base using Natural Language Processing (NLP).
+Medical AIRA is a conversational AI concept designed to help users access and explore general health-related information through a simple chat interface.
 
-The chatbot automatically reads text documents from a knowledge base, converts them into TF-IDF vectors, and retrieves the most relevant document based on the user's question.
+## Intended support
 
-It also supports automatic knowledge base expansion by adding new documents without changing the source code.
+- General health and wellness information
+- Easy-to-understand conversational interaction
+- Support for users preparing questions for a healthcare professional
+- Guidance to seek qualified care when professional advice is needed
 
----
+## Purpose
 
-## Features
+Medical AIRA is intended to make health-information discovery more approachable. It does not replace the judgement, diagnosis, treatment, or advice of a qualified healthcare professional.
 
-- Text preprocessing
-- Bag of Words
-- TF-IDF Vectorization
-- Automatic document loading
-- Document similarity search
-- Automatic knowledge base updates
-- Interactive chatbot interface
+## Important safety note
 
----
+Medical AIRA is not an emergency service and must not be used for urgent medical needs. For urgent or emergency symptoms, contact local emergency services or a qualified healthcare provider immediately.
 
-## Technologies Used
+## Project status
 
-- Python
-- Scikit-learn
-- TF-IDF
-- Cosine Similarity
-- NLP
-
----
-
-## Project Structure
-
-```
-Project-1/
-│
-├── knowledge_base/
-├── new_documents/
-├── src/
-│   ├── preprocess.py
-│   ├── bag_of_words.py
-│   ├── tfidf.py
-│   ├── read_documents.py
-│   ├── vectorize_documents.py
-│   ├── search_documents.py
-│   └── update_knowledge_base.py
-│
-├── README.md
-└── requirements.txt
-```
-
----
-
-## How to Run
-
-1. Install the required libraries.
-
-```
-pip install -r requirements.txt
-```
-
-2. Run the chatbot.
-
-```
-python src/search_documents.py
-```
-
-3. Ask questions.
-
-Example:
-
-```
-What is AI?
-What is Python?
-What is Machine Learning?
-```
-
-Type
-
-```
-exit
-```
-
-to quit.
-
----
-
-## Future Improvements
-
-- Sentence Transformers
-- FAISS Vector Database
-- LangChain Integration
-- Llama / Ollama Integration
-- Web Interface using Streamlit
-
-## Chatbot Demo
-
-### Example 1 - AI Question
-
-![Chatbot Demo 1](chatbot_demo_1.png)
-
-The chatbot correctly identifies **ai.txt** as the most relevant document and returns the answer with a similarity score.
-
----
-
-### Example 2 - Machine Learning Question
-
-![Chatbot Demo 2](chatbot_demo_2.png)
-
-The chatbot correctly retrieves information from **machine_learning.txt** and displays the relevant content.
----
-
-## Author
-
-Vijayalakshmi Narayanan
-
-
+This is a project overview for the Medical AIRA concept. Features and interface details may evolve as the project develops.
