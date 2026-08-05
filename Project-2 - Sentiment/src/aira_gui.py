@@ -128,7 +128,7 @@ def upload_image():
 
     try:
         image_name = os.path.basename(file_path)
-        report = analyse_image(image_name)
+        report = analyse_image(file_path)
 
         with Image.open(file_path) as selected_image:
             width, height = selected_image.size

@@ -1,4 +1,5 @@
 def detect_sentiment(text):
+    """Detect whether the text expresses a positive, negative, or neutral sentiment."""
 
     text = text.lower()
 
@@ -9,9 +10,12 @@ def detect_sentiment(text):
         "excellent",
         "awesome",
         "love",
+        "like",
         "thanks",
         "thank you",
-        "wonderful"
+        "wonderful",
+        "amazing",
+        "nice"
     ]
 
     negative_words = [
@@ -23,15 +27,24 @@ def detect_sentiment(text):
         "hate",
         "terrible",
         "worst",
-        "problem"
+        "problem",
+        "dislike",
+        "don't like",
+        "dont like",
+        "not good",
+        "poor",
+        "awful",
+        "annoying"
     ]
 
-    for word in positive_words:
-        if word in text:
-            return "Positive"
-
+    # Check negative words first
     for word in negative_words:
         if word in text:
             return "Negative"
+
+    # Then check positive words
+    for word in positive_words:
+        if word in text:
+            return "Positive"
 
     return "Neutral"
