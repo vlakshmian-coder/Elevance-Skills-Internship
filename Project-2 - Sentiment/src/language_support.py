@@ -11,12 +11,26 @@ def detect_language(text):
     Detect whether the text is English or Hindi.
     """
 
+    def detect_language(text):
+        """
+        Detect the user's language from Unicode characters.
+        """
+
     for character in text:
+
+        # Hindi (Devanagari)
         if "\u0900" <= character <= "\u097F":
             return "hi"
 
-    return "en"
+        # Tamil
+        if "\u0B80" <= character <= "\u0BFF":
+            return "ta"
 
+        # Kannada
+        if "\u0C80" <= character <= "\u0CFF":
+            return "kn"
+
+    return "en"
 
 def translate_to_english(text):
     """
