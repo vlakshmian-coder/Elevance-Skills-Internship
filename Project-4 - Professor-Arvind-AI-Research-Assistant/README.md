@@ -1,24 +1,64 @@
-# Medical AIRA - AI Health Information Assistant
+# Professor Arvind - AI Research Assistant 🤖📚
 
 ## Overview
 
-Medical AIRA is a conversational AI concept designed to help users access and explore general health-related information through a simple chat interface.
+Professor Arvind AI Research Assistant is a Generative AI-based assistant designed to help users explore and understand research papers, academic content, and scientific information.
 
-## Intended support
+The project uses Natural Language Processing (NLP) techniques and AI-based retrieval methods to provide relevant answers from research documents.
 
-- General health and wellness information
-- Easy-to-understand conversational interaction
-- Support for users preparing questions for a healthcare professional
-- Guidance to seek qualified care when professional advice is needed
+---
 
-## Purpose
+## Features
 
-Medical AIRA is intended to make health-information discovery more approachable. It does not replace the judgement, diagnosis, treatment, or advice of a qualified healthcare professional.
+- 🔍 Search and retrieve relevant research information
+- 📄 Process academic documents and papers
+- 🧠 NLP-based document understanding
+- 💬 Question-answering capability
+- 📝 Summarization of research content
+- 🖼️ AI-assisted visual interaction (optional module)
 
-## Important safety note
+---
 
-Medical AIRA is not an emergency service and must not be used for urgent medical needs. For urgent or emergency symptoms, contact local emergency services or a qualified healthcare provider immediately.
+## Tech Stack
 
-## Project status
+- Python
+- Streamlit
+- Natural Language Processing (NLP)
+- TF-IDF Vectorization
+- Cosine Similarity
+- Machine Learning concepts
+- Generative AI concepts
 
-This is a project overview for the Medical AIRA concept. Features and interface details may evolve as the project develops.
+---
+
+## Project Structure
+Project-4 - Professor-Arvind-AI-Research-Assistant/
+├── app.py
+├── requirements.txt
+├── README.md
+├── src/
+│   ├── preprocess.py
+│   ├── search_documents.py
+│   ├── tfidf.py
+│   ├── summarize.py
+│   ├── conversation_memory.py
+│   └── vectorize_documents.py
+└── notebooks/
+    └── 01_load_arxiv.ipynb
+    ## Learning Outcomes
+
+Through this project, I gained hands-on experience in:
+
+- Building AI assistant applications
+- NLP-based search systems
+- Document processing pipelines
+- Research paper analysis
+- Generative AI application development
+
+## Project Status
+
+This project is under active development as part of the Elevance Skills AI internship.
+
+## Author
+
+Vijayalakshmi Narayanan

@@ -1,109 +1,84 @@
-import os
-import sys
 import streamlit as st
-from PIL import Image
+from pathlib import Path
 
-# ----------------------------------------------------
-# Configure Streamlit page
-# ----------------------------------------------------
+# Page Configuration
 st.set_page_config(
-    page_title="Medical AIRA",
-    page_icon="🩺",
-    layout="centered"
+    page_title="Professor Arvind AI Research Assistant",
+    page_icon="📚",
+    layout="wide"
 )
 
-# ----------------------------------------------------
-# Add src folder to Python path
-# ----------------------------------------------------
-current_dir = os.path.dirname(os.path.abspath(__file__))
-src_path = os.path.join(current_dir, "src")
-sys.path.append(src_path)
-
-from search_documents import search_knowledge_base
-
-# ----------------------------------------------------
-# Load Avatar
-# ----------------------------------------------------
-image_path = os.path.join(
-    current_dir,
-    "images",
-    "aira.png"
+# Title
+st.markdown(
+    """
+    <h3 style='text-align:center; margin-bottom:5px;'>
+    👨‍🏫 Professor Arvind AI Research Assistant
+    </h3>
+    """,
+    unsafe_allow_html=True
 )
 
-avatar = Image.open(image_path)
+st.markdown(
+    """
+    <h4 style='text-align:center; color:#6C757D;'>
+    Helping researchers explore, summarize and understand scientific literature using Artificial Intelligence.
+    </h4>
+    """,
+    unsafe_allow_html=True
+)
+st.divider()
+
+# Professor Image
+image_path = Path(__file__).parent / "images" / "professor_arvind.png"
 
 col1, col2, col3 = st.columns([1, 2, 1])
 
 with col2:
-    st.image(avatar, width=180)
-# ----------------------------------------------------
-# Header
-# ----------------------------------------------------
-st.markdown(
-    "<h1 style='text-align: center;'>🩺 Medical AIRA</h1>",
-    unsafe_allow_html=True
+    st.image(image_path, width=250)
+    st.caption(
+    "🛈 The profile image shown above is an AI-generated illustrative avatar created for this educational project and does not represent an actual photograph of Professor Arvind."
 )
 
-st.markdown(
-    "<h4 style='text-align: center; color: gray;'>Your AI Medical Assistant</h4>",
-    unsafe_allow_html=True
-)
 
-st.markdown("""
-Welcome to **Medical AIRA**!
 
-📚 Powered by the **MedQuAD Medical Knowledge Base**
+# Welcome Message
+st.subheader("Welcome!")
 
-You can ask about:
+st.write("""
+This AI Research Assistant helps users:
 
-- 🩺 Diseases
-- 🤒 Symptoms
-- 🔬 Diagnosis
-- 💊 Treatments
-- 💉 Medications
-- ❤️ General Health
+- 📚 Explore research publications
+- 📝 Summarize research papers
+- 💬 Ask questions about research topics
+- 🤖 Learn through AI-powered conversations
 """)
 
-st.divider()
-
-# ----------------------------------------------------
-# User Question
-# ----------------------------------------------------
-question = st.text_input(
-    "Ask your medical question"
+st.info(
+    "🚀 This project is currently under development."
 )
 
-# ----------------------------------------------------
-# Ask Button
-# ----------------------------------------------------
-if st.button("🔍 Ask Medical AIRA"):
+# Input Box
+question = st.text_input(
+    "Ask a research question:"
+)
+
+# Button
+if st.button("Submit"):
 
     if question.strip() == "":
-        st.warning("Please enter a medical question.")
+        st.warning("Please enter a question.")
 
     else:
+        st.success("Research Assistant is under development.")
+        st.write("Your Question:")
+        st.write(question)
 
-        with st.spinner("Searching the MedQuAD medical knowledge base..."):
-
-            source, answer, score = search_knowledge_base(question)
-
-        st.divider()
-
-        st.subheader("🩺 Medical AIRA's Response")
-
-        with st.container(border=True):
-
-            st.markdown(f"**📄 Source:** {source}")
-            st.markdown(f"**🎯 Confidence:** {score:.2f}")
-
-            st.write(answer)
-
-# ----------------------------------------------------
-# Disclaimer
-# ----------------------------------------------------
 st.divider()
 
+st.markdown("---")
+
 st.caption(
-    "⚠️ This AI assistant is for educational purposes only. "
-    "It should not replace professional medical advice, diagnosis, or treatment."
+    "© 2026 Professor Arvind AI Research Assistant | "
+    "Developed by Vijayalakshmi Narayanan | "
+    "Educational Research Project"
 )
