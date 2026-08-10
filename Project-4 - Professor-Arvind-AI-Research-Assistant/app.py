@@ -1,6 +1,8 @@
 import streamlit as st
 from pathlib import Path
 from src.arxiv_search import search_arxiv
+from src.summarize import summarize_text, extract_keywords
+st.write("**Summary:**")
 
 # Page Configuration
 st.set_page_config(
@@ -114,6 +116,22 @@ if st.button("Submit"):
 
                 st.divider()
 
+                st.write(summarize_text(paper["abstract"]))
+                st.write("**Concept Visualization:**")
+
+                keywords = extract_keywords(paper["abstract"])
+
+        if keywords:
+            keyword_data = {
+                "Concept": [item[0] for item in keywords],
+                "Frequency": [item[1] for item in keywords]
+        }
+
+    st.bar_chart(
+        keyword_data,
+        x="Concept",
+        y="Frequency"
+    )
 st.divider()
 
 st.caption(

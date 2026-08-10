@@ -33,6 +33,9 @@ def search_arxiv(query, max_results=5):
             abstract = paper.get("abstract", "")
             categories = paper.get("categories", "")
 
+            if not any(category.startswith("cs.") for category in categories.split()):
+                continue
+
             searchable_text = (
                 title + " " + abstract + " " + categories
             ).lower()
