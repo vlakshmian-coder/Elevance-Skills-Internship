@@ -2,7 +2,7 @@ import streamlit as st
 from pathlib import Path
 from src.arxiv_search import search_arxiv
 from src.summarize import summarize_text, extract_keywords
-st.write("**Summary:**")
+
 
 # Page Configuration
 st.set_page_config(
@@ -116,7 +116,9 @@ if st.button("Submit"):
 
                 st.divider()
 
+                st.write("**Summary:**")
                 st.write(summarize_text(paper["abstract"]))
+
                 st.write("**Concept Visualization:**")
 
                 keywords = extract_keywords(paper["abstract"])
