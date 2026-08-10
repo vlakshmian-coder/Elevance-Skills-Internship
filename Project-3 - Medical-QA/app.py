@@ -6,6 +6,7 @@ from PIL import Image
 # ----------------------------------------------------
 # Configure Streamlit page
 # ----------------------------------------------------
+
 st.set_page_config(
     page_title="Medical AIRA",
     page_icon="🩺",
@@ -15,6 +16,7 @@ st.set_page_config(
 # ----------------------------------------------------
 # Add src folder to Python path
 # ----------------------------------------------------
+
 current_dir = os.path.dirname(os.path.abspath(__file__))
 src_path = os.path.join(current_dir, "src")
 sys.path.append(src_path)
@@ -22,8 +24,16 @@ sys.path.append(src_path)
 from search_documents import search_knowledge_base
 
 # ----------------------------------------------------
+# Initialize Chat History
+# ----------------------------------------------------
+
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
+
+# ----------------------------------------------------
 # Load Avatar
 # ----------------------------------------------------
+
 image_path = os.path.join(
     current_dir,
     "images",
@@ -36,16 +46,18 @@ col1, col2, col3 = st.columns([1, 2, 1])
 
 with col2:
     st.image(avatar, width=180)
+
 # ----------------------------------------------------
 # Header
 # ----------------------------------------------------
+
 st.markdown(
-    "<h1 style='text-align: center;'>🩺 Medical AIRA</h1>",
+    "🩺 Medical AIRA",
     unsafe_allow_html=True
 )
 
 st.markdown(
-    "<h4 style='text-align: center; color: gray;'>Your AI Medical Assistant</h4>",
+    "Your AI Medical Assistant",
     unsafe_allow_html=True
 )
 
@@ -69,6 +81,7 @@ st.divider()
 # ----------------------------------------------------
 # User Question
 # ----------------------------------------------------
+
 question = st.text_input(
     "Ask your medical question"
 )
@@ -76,6 +89,7 @@ question = st.text_input(
 # ----------------------------------------------------
 # Ask Button
 # ----------------------------------------------------
+
 if st.button("🔍 Ask Medical AIRA"):
 
     if question.strip() == "":
@@ -83,24 +97,54 @@ if st.button("🔍 Ask Medical AIRA"):
 
     else:
 
-        with st.spinner("Searching the MedQuAD medical knowledge base..."):
+        with st.spinner(
+            "Searching the MedQuAD medical knowledge base..."
+        ):
 
             source, answer, score = search_knowledge_base(question)
 
-        st.divider()
+        # Save conversation to session state
+        st.session_state.chat_history.append({
+            "question": question,
+            "source": source,
+            "answer": answer,
+            "score": score
+        })
 
-        st.subheader("🩺 Medical AIRA's Response")
+# ----------------------------------------------------
+# Display Conversation History
+# ----------------------------------------------------
+
+if st.session_state.chat_history:
+
+    st.divider()
+
+    st.subheader("💬 Medical AIRA Conversation")
+
+    for chat in st.session_state.chat_history:
+
+        st.markdown("### 🧑 Your Question")
+
+        st.write(chat["question"])
+
+        st.markdown("### 🩺 Medical AIRA's Response")
 
         with st.container(border=True):
 
-            st.markdown(f"**📄 Source:** {source}")
-            st.markdown(f"**🎯 Confidence:** {score:.2f}")
+            st.markdown(
+                f"**📄 Source:** {chat['source']}"
+            )
 
-            st.write(answer)
+            st.markdown(
+                f"**🎯 Confidence:** {chat['score']:.2f}"
+            )
+
+            st.write(chat["answer"])
 
 # ----------------------------------------------------
 # Disclaimer
 # ----------------------------------------------------
+
 st.divider()
 
 st.caption(

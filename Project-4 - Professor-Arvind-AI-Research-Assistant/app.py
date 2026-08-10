@@ -1,5 +1,6 @@
 import streamlit as st
 from pathlib import Path
+from src.arxiv_search import search_arxiv
 
 # Page Configuration
 st.set_page_config(
@@ -63,19 +64,57 @@ question = st.text_input(
 )
 
 # Button
+
 if st.button("Submit"):
 
     if question.strip() == "":
         st.warning("Please enter a question.")
 
     else:
-        st.success("Research Assistant is under development.")
-        st.write("Your Question:")
-        st.write(question)
+        with st.spinner("Searching arXiv research papers..."):
+
+            results = search_arxiv(
+                question,
+                max_results=5
+            )
+
+        if not results:
+            st.warning(
+                "No matching research papers were found."
+            )
+
+        else:
+            st.success(
+                f"Found {len(results)} research paper(s)."
+            )
+
+            st.subheader("Relevant Research Papers")
+
+            for paper in results:
+
+                st.markdown(
+                    f"### 📄 {paper['title']}"
+                )
+
+                st.write(
+                    f"**Paper ID:** {paper['id']}"
+                )
+
+                st.write(
+                    f"**Categories:** {paper['categories']}"
+                )
+
+                st.write(
+                    f"**Authors:** {paper['authors']}"
+                )
+
+                st.write(
+                    f"**Abstract:** {paper['abstract'][:500]}..."
+                )
+
+                st.divider()
 
 st.divider()
-
-st.markdown("---")
 
 st.caption(
     "© 2026 Professor Arvind AI Research Assistant | "

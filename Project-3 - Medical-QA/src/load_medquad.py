@@ -15,12 +15,7 @@ def load_medquad():
 
     current_dir = os.path.dirname(os.path.abspath(__file__))
 
-    dataset_path = os.path.join(
-        current_dir,
-        "..",
-        "data",
-        "MedQuAD-master"
-    )
+    dataset_path = r"C:\AI_Datasets\MedQuAD\MedQuAD-master"
 
     medical_data = []
 
