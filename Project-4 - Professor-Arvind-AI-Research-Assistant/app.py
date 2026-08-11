@@ -2,6 +2,7 @@ import streamlit as st
 from pathlib import Path
 from src.arxiv_search import search_arxiv
 from src.summarize import summarize_text, extract_keywords
+from src.ollama_chat import ask_ollama
 
 
 # Page Configuration
@@ -134,6 +135,17 @@ if st.button("Submit"):
         x="Concept",
         y="Frequency"
     )
+
+st.subheader("🤖 AI Explanation")
+
+with st.spinner("Professor Arvind is preparing an explanation..."):
+
+    explanation = ask_ollama(
+        f"Explain this research topic in simple terms: {question}"
+    )
+
+st.write(explanation)   
+
 st.divider()
 
 st.caption(
