@@ -61,6 +61,9 @@ st.info(
     "🚀 This project is currently under development."
 )
 
+if "conversation_history" not in st.session_state:
+    st.session_state.conversation_history = []
+
 # Input Box
 question = st.text_input(
     "Ask a research question:"
@@ -90,6 +93,16 @@ if st.button("Submit"):
             st.success(
                 f"Found {len(results)} research paper(s)."
             )
+
+            st.subheader("🤖 AI Explanation")
+
+            with st.spinner("Professor Arvind is preparing an explanation..."):
+
+                explanation = ask_ollama(
+                    f"Explain this research topic in simple terms: {question}"
+                )
+
+            st.write(explanation)   
 
             st.subheader("Relevant Research Papers")
 
@@ -136,15 +149,7 @@ if st.button("Submit"):
         y="Frequency"
     )
 
-st.subheader("🤖 AI Explanation")
 
-with st.spinner("Professor Arvind is preparing an explanation..."):
-
-    explanation = ask_ollama(
-        f"Explain this research topic in simple terms: {question}"
-    )
-
-st.write(explanation)   
 
 st.divider()
 
