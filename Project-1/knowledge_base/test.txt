@@ -1,3 +1,0 @@
-LangChain is a framework for building AI applications using large language models.
-It helps developers connect LLMs with documents, tools, memory, and external APIs.
-
